@@ -16,7 +16,7 @@ namespace RunGroup.Models
 
         public RaceCategoryEnum RaceCategory { get; set; }
 
-        public int AppUserID { get; set; }
-        public AppUser AppUser { get; set; }
+        public string? AppUserID { get; set; }
+        public AppUser? AppUser { get; set; }
     }
 }
