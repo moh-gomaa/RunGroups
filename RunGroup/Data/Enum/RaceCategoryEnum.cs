@@ -2,7 +2,7 @@
 {
     public enum RaceCategoryEnum
     {
-        Marthon,
+        Marathon,
         Ultra,
         FiveK,
         TenK,
