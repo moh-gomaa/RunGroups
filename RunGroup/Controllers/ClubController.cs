@@ -1,29 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using RunGroup.Data;
+using RunGroup.Interfaces;
 
 namespace RunGroup.Controllers
 {
     public class ClubController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IClubRepository _clubRepository;
 
-        public ClubController(AppDbContext context)
+        public ClubController(IClubRepository clubRepository)
         {
-            _context = context;
+            _clubRepository = clubRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var clubs = _context.Clubs.ToList();
+            var clubs = await _clubRepository.GetAll();
 
             return View(clubs);
         }
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var obj = _context.Clubs
-                .Include(x => x.Address)
-                .FirstOrDefault(x => x.Id == id);
+            var obj = await _clubRepository.GetById(id);
 
             return View(obj);
         }
